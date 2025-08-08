@@ -8,6 +8,8 @@ const useCon = () => {
   const [config, setConfig] = useState({
     termsAndConditions: '',
     deliveryCharge: 0,
+    deliveryChargeInsideDhaka: 0,
+    deliveryChargeOutsideDhaka: 0,
     taxRate: 0,
     storeName: '',
     contactEmail: '',
@@ -24,6 +26,8 @@ const useCon = () => {
         setConfig({
           termsAndConditions: data.termsAndConditions,
           deliveryCharge: data.deliveryCharge,
+          deliveryChargeInsideDhaka: data.deliveryChargeInsideDhaka,
+          deliveryChargeOutsideDhaka: data.deliveryChargeOutsideDhaka,
           taxRate: data.taxRate,
           storeName: data.storeName,
           contactEmail: data.contactEmail,

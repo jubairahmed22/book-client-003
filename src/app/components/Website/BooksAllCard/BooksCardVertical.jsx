@@ -146,9 +146,18 @@ const BooksCardVertical = ({ product }) => {
           <div className="flex flex-col gap-2">
             <div className="flex flex-col gap-2 ">
               <h1 className="bangla-text font-semibold text-gray-900 truncate">
-          {product?.title.split(" ").slice(0, 2).join(" ")}
-          {product?.title.split(" ").length > 2 && "..."}
-        </h1>
+  {product?.title.split(" ").length > 0 ? (
+    <>
+      {product.title.split(" ")[0]}
+      {product.title.split(" ").length > 1 && (
+        <> {product.title.split(" ")[1].substring(0, 4)}</>
+      )}
+      {product.title.split(" ").length > 2 && "..."}
+    </>
+  ) : (
+    product?.title
+  )}
+</h1>
 
               {/* Rating */}
               <div className="flex items-center gap-1">

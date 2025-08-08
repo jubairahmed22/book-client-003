@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "./providers";
 import DynamicLayout from "./DynamicLayout";
+import logo from '../assets/book_forest.png'
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
@@ -12,6 +13,9 @@ const poppins = Poppins({
 export const metadata = {
   title: "Book Forest",
   description: "",
+  icons: {
+    icon: logo.src, // using your imported logo
+  },
 };
 
 export default function RootLayout({ children }) {

@@ -91,6 +91,22 @@ export const useCart = () => {
     return cart.some(item => item._id === productId);
   };
 
+  const clearCart = () => {
+    try {
+      setCart([]);
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("booksCart");
+        window.dispatchEvent(new Event("cartUpdated"));
+      }
+      toast.success("Cart cleared successfully!");
+      return true;
+    } catch (error) {
+      console.error("Failed to clear cart:", error);
+      toast.error("Failed to clear cart");
+      return false;
+    }
+  };
+
   const calculateDiscount = (product) => {
     try {
       if (!product) return 0;
@@ -112,6 +128,7 @@ export const useCart = () => {
     cart,
     addToCart,
     removeFromCart,
+    clearCart,
     isInCart,
     cartCount: cart.reduce((sum, item) => sum + (item.quantity || 0), 0),
     updateCart,

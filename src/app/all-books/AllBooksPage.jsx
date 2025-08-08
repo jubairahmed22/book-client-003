@@ -259,7 +259,7 @@ const AllBooksPage = () => {
 
   return (
     <div className="fontPoppins max-w-[1400px] dark:bg-white customLayout mx-auto flex justify-between gap-3">
-      <div className="flex w-[450px] customWidth dark:bg-white mt-2">
+      <div className="flex w-[450px]  customWidth dark:bg-white mt-2">
         <AllBooksFilter
           authors={authors}
           publishers={publishers}

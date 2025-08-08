@@ -134,6 +134,9 @@
   .sliderImgSize {
     height: 600px;
   }
+  .largeWidth{
+    width: 200px;
+  }
 }
 
 

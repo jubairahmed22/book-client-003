@@ -162,7 +162,7 @@ const [openDropdown, setOpenDropdown] = useState(null);
 
   return (
     <div className="">
-  <div className="w-full shrink-0 bigDisplay">
+  <div className="w-full shrink-0 bigDisplay sticky top-4">
     <div className="bg-white rounded-lg shadow-md p-4 sticky top-4 border border-gray-200">
       <div className="flex flex-row items-center justify-between mb-3 border-b border-gray-200 pb-3">
           <h3 className="text-sm font-medium text-gray-900 pb-2 flex-grow">

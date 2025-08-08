@@ -38,6 +38,7 @@ const EditOrders = () => {
     transactionId: "",
     PaymentAmount: "",
     paymentDate: "",
+    deliveryLocation: "",
     invoiceId: "",
     _id:"",
     createdAt: ""
@@ -81,6 +82,7 @@ const EditOrders = () => {
           dueTotal: order.dueTotal || 0,
           paymentDate: order.paymentDate || "",
           invoiceId: order.invoiceId || "",
+          deliveryLocation: order.deliveryLocation || "",
           _id: order._id,
           createdAt: order.createdAt,
         });
@@ -432,7 +434,7 @@ const EditOrders = () => {
                   </div>
 
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Delivery:</span>
+                    <span className="text-gray-600">{formData.deliveryLocation === 'insideDhaka' ? 'Inside' : 'Outside'} Dhaka Shipping Charge:</span>
                     <span className="font-medium">
                       {formData.deliveryCharge?.toFixed(2)} tk
                     </span>

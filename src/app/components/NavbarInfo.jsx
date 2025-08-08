@@ -249,7 +249,7 @@ const NavbarInfo = () => {
             <WriterCategory></WriterCategory>
             <PublicationCategory></PublicationCategory>
 
-            <Link href="/">Contact</Link>
+            <Link href="/contact">Contact</Link>
           </div>
           <div></div>
         </div>

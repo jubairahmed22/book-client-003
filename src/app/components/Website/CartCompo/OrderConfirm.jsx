@@ -1,25 +1,19 @@
 "use client";
 import React, { useState } from "react";
-import { useCart } from "../hooks/useCart";
-import useCon from "../hooks/useCon";
-import { toast } from "react-hot-toast";
-import CartItemCompo from "../components/Website/CartCompo/CartItemCompo";
-import OrderSummery from "../components/Website/CartCompo/OrderSummery";
-import ProtectedRoute from "../components/ProtectedRoute";
-import ShippingTitle from "../components/Website/CartCompo/ShippingTitle";
-import ShippingProductsValue from "../components/Website/CartCompo/ShippingProductsValue";
-import Link from "next/link";
 import { useSession } from "next-auth/react";
 import axios from "axios";
-import "../../styles/cart.css";
-const Page = () => {
-  const { data: session, status } = useSession();
+import { useCart } from "../../../hooks/useCart";
+import Swal from "sweetalert2";
 
-  const { cart, cartCount, removeFromCart, updateCart } = useCart();
-  const { config, loading, error } = useCon();
+
+const OrderConfirm = ({ deliveryCharge, deliveryLocation}) => {
+    const { data: session, status } = useSession();
+  const { cart, cartCount, clearCart } = useCart();
+
+
 
   const [editingQuantity, setEditingQuantity] = useState(null);
-  const DELIVERY_CHARGE = config.deliveryCharge; // TKA online fee constant
+  const DELIVERY_CHARGE = deliveryCharge;
 
   const calculateFinalPrice = (item) => {
     return Math.max(
@@ -32,23 +26,7 @@ const Page = () => {
     );
   };
 
-  const handleQuantityChange = (productId, newQuantity) => {
-    if (newQuantity < 1) return;
-
-    const updatedCart = cart.map((item) =>
-      item._id === productId ? { ...item, quantity: newQuantity } : item
-    );
-    updateCart(updatedCart);
-  };
-
-  const handleInputBlur = (productId, value) => {
-    const numValue = parseInt(value);
-    if (isNaN(numValue) || numValue < 1) {
-      handleQuantityChange(productId, 1);
-    }
-    setEditingQuantity(null);
-  };
-
+  
   // Calculate cart values
   const cartSummary = cart.reduce(
     (acc, item) => {
@@ -66,8 +44,6 @@ const Page = () => {
   );
 
   const total = cartSummary.subtotal + DELIVERY_CHARGE;
-
-  const deliveryCharge = DELIVERY_CHARGE;
 
   const [userInfo, setUserInfo] = useState({
     name: session?.user?.name || "",
@@ -122,6 +98,7 @@ const Page = () => {
         "https://books-server-001.vercel.app/pay-sslcommerz",
         {
           total,
+          deliveryLocation,
           customerTotal: total,
           email,
           name,
@@ -220,6 +197,7 @@ const Page = () => {
         "https://books-server-001.vercel.app/pay-cashondelivery",
         {
           total,
+          deliveryLocation: deliveryLocation,
           customerTotal: total,
           email,
           name,
@@ -250,6 +228,7 @@ const Page = () => {
                   number: phone,
                   address: address,
                   deliveryCharge: deliveryCharge,
+                  deliveryLocation: deliveryLocation,
                   invoiceId: invoiceId, // Use the same invoice ID
                 },
               }),
@@ -263,25 +242,43 @@ const Page = () => {
           const result = await emailResponse.json();
 
           if (result.success) {
-            alert(
-              "Thank you for your order! We've successfully processed your purchase and ! " +
-                (result.message || "Confirmation email sent.")
-            );
+            await Swal.fire({
+              icon: 'success',
+              title: 'Order Successful!',
+              html: `Thank you for your order! We've successfully processed your purchase.<br>${result.message || 'Confirmation email sent.'}`,
+              confirmButtonColor: '#3085d6',
+            });
           } else {
-            alert(
-              "Thank you for your order! We've successfully processed your purchase and ! " +
-                (result.message || "But failed to send confirmation email.")
-            );
-            setIsLoading(false); // Stop loading if order fails
+            await Swal.fire({
+              icon: 'success',
+              title: 'Order Processed',
+              html: `Thank you for your order! We've successfully processed your purchase.<br>${result.message || 'But failed to send confirmation email.'}`,
+              confirmButtonColor: '#3085d6',
+            });
+            setIsLoading(false);
           }
         } catch (emailError) {
           console.error("Email sending failed:", emailError);
-          alert(
-            "Thank you for your order! We've successfully processed your purchase ! But failed to send confirmation email."
-          );
+          await Swal.fire({
+            icon: 'success',
+            title: 'Order Processed',
+            html: 'Thank you for your order! We\'ve successfully processed your purchase.<br>But failed to send confirmation email.',
+            confirmButtonColor: '#3085d6',
+          });
         }
 
         // Handle success (clear cart, redirect, etc.)
+      clearCart();
+      setUserInfo({
+      name: session?.user?.name || "",
+      email: session?.user?.email || "",
+      phone: "",
+      address: "",
+    });
+
+    // Redirect to success page
+    window.location.href = "/order-success"; // Change this to your success page U
+
       } else {
         throw new Error(orderResponse.data.error || "Order failed");
       }
@@ -290,12 +287,13 @@ const Page = () => {
       alert(error.response?.data?.error || "Order failed");
     }
   };
+
   const itemCount = cartSummary.itemCount;
 
   return (
-    <div className="min-h-screen bg-white max-w-[1400px] mx-auto py-10 fontPoppins">
-      {/* <ProtectedRoute></ProtectedRoute> */}
-      <div className="flex flex-row  gap-5 w-full px-4 itePositionWeb">
+    <div className=" fontPoppins">
+      <div className="flex flex-col md:flex-row gap-5 w-full ">
+        {/* Billing Form */}
         <div>
           {/* Billing Form */}
           <div className="mt-6 space-y-3">
@@ -382,114 +380,9 @@ const Page = () => {
               </button> */}
           </div>
         </div>
-        <div className="w-[55%] flex flex-col gap-5">
-          <ShippingTitle cartCount={cartCount}></ShippingTitle>
-          <ShippingProductsValue
-            itemCount={cartSummary.itemCount}
-            subtotal={cartSummary.subtotal}
-            totalDiscount={cartSummary.totalDiscount}
-            deliveryCharge={DELIVERY_CHARGE}
-            total={total}
-          ></ShippingProductsValue>
-        </div>
-      </div>
-      <div className="itePositionMobile px-4">
-        <div className="w-[55%] customWidthFull flex flex-col gap-5">
-          <ShippingTitle cartCount={cartCount}></ShippingTitle>
-          <ShippingProductsValue
-            itemCount={cartSummary.itemCount}
-            subtotal={cartSummary.subtotal}
-            totalDiscount={cartSummary.totalDiscount}
-            deliveryCharge={DELIVERY_CHARGE}
-            total={total}
-          ></ShippingProductsValue>
-        </div>
-        {/* Billing Form */}
-        <div className="mt-6 space-y-3">
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            value={session?.user?.name || userInfo.name}
-            onChange={handleInputChange}
-            className="w-full border p-2 rounded dark:bg-white dark:border-gray-300 dark:text-gray-900 dark:placeholder-gray-500 disabled:dark:bg-gray-100 disabled:dark:text-gray-700"
-            disabled={!!session?.user?.name}
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={session?.user?.email || userInfo.email}
-            onChange={handleInputChange}
-            className="w-full border p-2 rounded dark:bg-white dark:border-gray-300 dark:text-gray-900 dark:placeholder-gray-500 disabled:dark:bg-gray-100 disabled:dark:text-gray-700"
-            disabled={!!session?.user?.email}
-          />
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone Number"
-            value={userInfo.phone}
-            onChange={handleInputChange}
-            className="w-full border p-2 rounded dark:bg-white dark:border-gray-300 dark:text-gray-900 dark:placeholder-gray-500"
-          />
-          <textarea
-            name="address"
-            placeholder="Shipping Address"
-            value={userInfo.address}
-            onChange={handleInputChange}
-            className="w-full border p-2 rounded dark:bg-white dark:border-gray-300 dark:text-gray-900 dark:placeholder-gray-500"
-            rows="3"
-          />
-        </div>
-        <div className="flex flex-row gap-5">
-          <button
-            onClick={handleCashOnDelivery}
-            className={`w-full bg-[#50C878] text-white py-3 rounded-lg mt-6 hover:bg-blue-700 transition-colors flex justify-center items-center ${
-              itemCount === 0 || isLoading
-                ? "opacity-70 cursor-not-allowed"
-                : ""
-            }`}
-            disabled={itemCount === 0 || isLoading}
-          >
-            {isLoading ? (
-              <>
-                <svg
-                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-                Processing...
-              </>
-            ) : (
-              `Cash On Delivery (৳${total.toFixed(2)})`
-            )}
-          </button>
-          {/* <button
-                onClick={handlePayment}
-                className="w-full bg-[#50C878] text-white py-3 rounded-lg mt-6 hover:bg-blue-700 transition-colors"
-                disabled={itemCount === 0}
-              >
-                Mobile Wallet (৳{total.toFixed(2)})
-              </button> */}
-        </div>
       </div>
     </div>
   );
 };
 
-export default Page;
+export default OrderConfirm;
