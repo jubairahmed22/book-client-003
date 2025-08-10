@@ -13,7 +13,9 @@ const poppins = Poppins({
 export const metadata = {
   title: "Book Forest",
   description: "",
-
+ icons: {
+    icon: '../../public/favicon.ico',
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -21,8 +23,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* Add the Google Fonts link here */}
-         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/png" href="/favicon.png" />
+         <link rel="icon" href="../../public/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" href="../../public/favicon.png" />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@400;700&family=Roboto:wght@400;700&family=Space+Mono&family=Montserrat&family=Courier+Prime&family=Poppins:wght@400;700&family=Raleway:wght@400;700&family=Nunito+Sans:wght@400;700&family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&family=Abril+Fatface&family=Pacifico&display=swap"
