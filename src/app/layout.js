@@ -23,6 +23,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         {/* Add the Google Fonts link here */}
+        <link rel="icon" href="https://www.bookforest.net/favicon.ico" />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@400;700&family=Roboto:wght@400;700&family=Space+Mono&family=Montserrat&family=Courier+Prime&family=Poppins:wght@400;700&family=Raleway:wght@400;700&family=Nunito+Sans:wght@400;700&family=Playfair+Display:wght@400;700&family=Lora:wght@400;700&family=Abril+Fatface&family=Pacifico&display=swap"
