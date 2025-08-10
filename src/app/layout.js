@@ -14,7 +14,7 @@ export const metadata = {
   title: "Book Forest",
   description: "",
   icons: {
-    icon: logo.src, // using your imported logo
+    icon: "/favicon.png",
   },
 };
 
