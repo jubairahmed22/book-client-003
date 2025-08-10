@@ -30,7 +30,7 @@ const NavbarInfo = () => {
       <div className="w-full bg-black fontPoppins px-4">
         <div className="max-w-[1400px] mx-auto flex justify-between">
           <div className=" py-2 flex flex-row items-center gap-5">
-            <h1 className="navInfoText">Customer Support</h1>
+            <Link href="/contact"><h1 className="navInfoText">Contact Us</h1></Link>
             <div className="flex flex-row gap-2">
               <img src={whatsapp.src} alt="" className="w-4 h-4"></img>
               <h1 className="navInfoText">+880 1763427561</h1>

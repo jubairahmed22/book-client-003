@@ -10,6 +10,7 @@ const OrderConfirm = ({ deliveryCharge, deliveryLocation}) => {
     const { data: session, status } = useSession();
   const { cart, cartCount, clearCart } = useCart();
 
+const [privacyAccepted, setPrivacyAccepted] = useState(false);
 
 
   const [editingQuantity, setEditingQuantity] = useState(null);
@@ -291,97 +292,111 @@ const OrderConfirm = ({ deliveryCharge, deliveryLocation}) => {
   const itemCount = cartSummary.itemCount;
 
   return (
-    <div className=" fontPoppins">
-      <div className="flex flex-col md:flex-row gap-5 w-full ">
-        {/* Billing Form */}
-        <div>
-          {/* Billing Form */}
-          <div className="mt-6 space-y-3">
-            <input
-              type="text"
-              name="name"
-              placeholder="Full Name"
-              value={session?.user?.name || userInfo.name}
-              onChange={handleInputChange}
-              className="w-full border p-2 rounded dark:bg-white dark:border-gray-300 dark:text-gray-900 dark:placeholder-gray-500 disabled:dark:bg-gray-100 disabled:dark:text-gray-700"
-              disabled={!!session?.user?.name}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={session?.user?.email || userInfo.email}
-              onChange={handleInputChange}
-              className="w-full border p-2 rounded dark:bg-white dark:border-gray-300 dark:text-gray-900 dark:placeholder-gray-500 disabled:dark:bg-gray-100 disabled:dark:text-gray-700"
-              disabled={!!session?.user?.email}
-            />
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Phone Number"
-              value={userInfo.phone}
-              onChange={handleInputChange}
-              className="w-full border p-2 rounded dark:bg-white dark:border-gray-300 dark:text-gray-900 dark:placeholder-gray-500"
-            />
-            <textarea
-              name="address"
-              placeholder="Shipping Address"
-              value={userInfo.address}
-              onChange={handleInputChange}
-              className="w-full border p-2 rounded dark:bg-white dark:border-gray-300 dark:text-gray-900 dark:placeholder-gray-500"
-              rows="3"
-            />
-          </div>
+    <div className="fontPoppins">
+  <div className="flex flex-col md:flex-row gap-5 w-full">
+    <div>
+      <div className="mt-6 space-y-3">
+        <input
+          type="text"
+          name="name"
+          placeholder="Full Name"
+          value={session?.user?.name || userInfo.name}
+          onChange={handleInputChange}
+          className="w-full border p-2 rounded dark:bg-white dark:border-gray-300 dark:text-gray-900 dark:placeholder-gray-500 disabled:dark:bg-gray-100 disabled:dark:text-gray-700"
+          disabled={!!session?.user?.name}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={session?.user?.email || userInfo.email}
+          onChange={handleInputChange}
+          className="w-full border p-2 rounded dark:bg-white dark:border-gray-300 dark:text-gray-900 dark:placeholder-gray-500 disabled:dark:bg-gray-100 disabled:dark:text-gray-700"
+          disabled={!!session?.user?.email}
+        />
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Phone Number"
+          value={userInfo.phone}
+          onChange={handleInputChange}
+          className="w-full border p-2 rounded dark:bg-white dark:border-gray-300 dark:text-gray-900 dark:placeholder-gray-500"
+        />
+        <textarea
+          name="address"
+          placeholder="Shipping Address"
+          value={userInfo.address}
+          onChange={handleInputChange}
+          className="w-full border p-2 rounded dark:bg-white dark:border-gray-300 dark:text-gray-900 dark:placeholder-gray-500"
+          rows="3"
+        />
+      </div>
 
-          <div className="flex flex-row gap-5">
-            <button
-              onClick={handleCashOnDelivery}
-              className={`w-full bg-[#50C878] text-white py-3 rounded-lg mt-6 hover:bg-blue-700 transition-colors flex justify-center items-center ${
-                itemCount === 0 || isLoading
-                  ? "opacity-70 cursor-not-allowed"
-                  : ""
-              }`}
-              disabled={itemCount === 0 || isLoading}
-            >
-              {isLoading ? (
-                <>
-                  <svg
-                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                  Processing...
-                </>
-              ) : (
-                `Cash On Delivery (৳${total.toFixed(2)})`
-              )}
-            </button>
-            {/* <button
-                onClick={handlePayment}
-                className="w-full bg-[#50C878] text-white py-3 rounded-lg mt-6 hover:bg-blue-700 transition-colors"
-                disabled={itemCount === 0}
+      {/* Privacy Policy Radio */}
+      <div className="mt-4 flex items-center gap-2">
+        <input
+          type="radio"
+          id="privacyPolicy"
+          name="privacyPolicy"
+          checked={privacyAccepted}
+          onChange={() => setPrivacyAccepted(!privacyAccepted)}
+          className="w-4 h-4"
+        />
+        <label htmlFor="privacyPolicy" className="text-sm text-gray-700">
+          I agree to the{" "}
+          <a href="/privacy-policy" className="text-blue-600 underline">
+            Privacy Policy
+          </a>{" "}
+          {/* &{" "} */}
+          {/* <a href="/terms" className="text-blue-600 underline">
+            Terms of Service
+          </a> */}
+        </label>
+      </div>
+
+      <div className="flex flex-row gap-5">
+        <button
+          onClick={handleCashOnDelivery}
+          className={`w-full bg-[#50C878] text-white py-3 rounded-lg mt-6 hover:bg-blue-700 transition-colors flex justify-center items-center ${
+            itemCount === 0 || isLoading || !privacyAccepted
+              ? "opacity-70 cursor-not-allowed"
+              : ""
+          }`}
+          disabled={itemCount === 0 || isLoading || !privacyAccepted}
+        >
+          {isLoading ? (
+            <>
+              <svg
+                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
               >
-                Mobile Wallet (৳{total.toFixed(2)})
-              </button> */}
-          </div>
-        </div>
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              Processing...
+            </>
+          ) : (
+            `Cash On Delivery (৳${total.toFixed(2)})`
+          )}
+        </button>
       </div>
     </div>
+  </div>
+</div>
+
   );
 };
 
