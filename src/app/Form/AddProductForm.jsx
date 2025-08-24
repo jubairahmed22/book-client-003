@@ -71,25 +71,25 @@ const AddProductForm = ({ onClose }) => {
       try {
         // Fetch categories
         const categoriesResponse = await axios.get(
-          "https://books-server-001.vercel.app/api/admin/category"
+          "http://localhost:5001/api/admin/category"
         );
         setCategories(categoriesResponse.data.products);
 
         // Fetch authors
         const authorsResponse = await axios.get(
-          "https://books-server-001.vercel.app/api/admin/all-author"
+          "http://localhost:5001/api/admin/all-author"
         );
         setAuthors(authorsResponse.data.products);
 
         // Fetch tags
         const tagsResponse = await axios.get(
-          "https://books-server-001.vercel.app/api/admin/all-tag"
+          "http://localhost:5001/api/admin/all-tag"
         );
         setTags(tagsResponse.data.products);
 
         // Fetch publishers
         const publishersResponse = await axios.get(
-          "https://books-server-001.vercel.app/api/admin/all-publisher"
+          "http://localhost:5001/api/admin/all-publisher"
         );
         setPublishers(publishersResponse.data.products);
       } catch (error) {
@@ -113,7 +113,7 @@ const AddProductForm = ({ onClose }) => {
       setIsFetchingSubCategories(true);
       try {
         const response = await axios.get(
-          "https://books-server-001.vercel.app/api/admin/sub-category"
+          "http://localhost:5001/api/admin/sub-category"
         );
         const filteredSubCategories = response.data.products.filter(
           (subCat) => subCat.parentCategory.id === selectedCategory._id
@@ -138,7 +138,7 @@ const AddProductForm = ({ onClose }) => {
       setIsFetchingChildCategories(true);
       try {
         const response = await axios.get(
-          "https://books-server-001.vercel.app/api/admin/child-category"
+          "http://localhost:5001/api/admin/child-category"
         );
         const filteredChildCategories = response.data.products.filter(
           (childCat) =>
@@ -223,7 +223,7 @@ const AddProductForm = ({ onClose }) => {
 
     try {
       const response = await axios.post(
-        "https://books-server-001.vercel.app/api/admin/upload/product",
+        "http://localhost:5001/api/admin/upload/product",
         formDataToSend,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

@@ -76,19 +76,19 @@ const AllProductsDataAdmin = () => {
       try {
         // Fetch categories
         const categoriesResponse = await axios.get(
-          "https://books-server-001.vercel.app/api/admin/category"
+          "http://localhost:5001/api/admin/category"
         );
         setCategories(categoriesResponse.data.products);
 
         // Fetch authors
         const authorsResponse = await axios.get(
-          "https://books-server-001.vercel.app/api/admin/all-author"
+          "http://localhost:5001/api/admin/all-author"
         );
         setAuthors(authorsResponse.data.products);
 
         // Fetch publishers
         const publishersResponse = await axios.get(
-          "https://books-server-001.vercel.app/api/admin/all-publisher"
+          "http://localhost:5001/api/admin/all-publisher"
         );
         setPublishers(publishersResponse.data.products);
 
@@ -124,7 +124,7 @@ const AllProductsDataAdmin = () => {
       setIsFetchingSubCategories(true);
       try {
         const response = await axios.get(
-          "https://books-server-001.vercel.app/api/admin/sub-category"
+          "http://localhost:5001/api/admin/sub-category"
         );
         const filteredSubCategories = response.data.products.filter(
           (subCat) => subCat.parentCategory.id === categorySelected._id
@@ -160,7 +160,7 @@ const AllProductsDataAdmin = () => {
       setIsFetchingChildCategories(true);
       try {
         const response = await axios.get(
-          "https://books-server-001.vercel.app/api/admin/child-category"
+          "http://localhost:5001/api/admin/child-category"
         );
         const filteredChildCategories = response.data.products.filter(
           (childCat) => childCat.parentSubCategory.id === subCategorySelected._id
@@ -212,7 +212,7 @@ const AllProductsDataAdmin = () => {
         if (newReleasedParam) params.set("newReleased", newReleasedParam);
 
         const response = await axios.get(
-          `https://books-server-001.vercel.app/api/admin/all-products?${params.toString()}`
+          `http://localhost:5001/api/admin/all-products?${params.toString()}`
         );
         setProducts(response.data.products);
         setTotalPages(response.data.totalPages);
@@ -355,7 +355,7 @@ const AllProductsDataAdmin = () => {
     await DeleteConfirmation(async () => {
       try {
         const response = await axios.delete(
-          `https://books-server-001.vercel.app/api/admin/delete/products/${id}`
+          `http://localhost:5001/api/admin/delete/products/${id}`
         );
         if (response.data.success) {
           fetchProducts(false);

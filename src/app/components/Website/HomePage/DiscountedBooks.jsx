@@ -17,7 +17,7 @@ const DiscountedBooks = () => {
   useEffect(() => {
     const fetchDiscountedBooks = async () => {
       try {
-        const response = await fetch('https://books-server-001.vercel.app/api/web/discounted-books');
+        const response = await fetch('http://localhost:5001/api/web/discounted-books');
         if (!response.ok) {
           throw new Error('Failed to fetch discounted books');
         }

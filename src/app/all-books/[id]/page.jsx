@@ -24,7 +24,7 @@ const ProductDetails = () => {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          `https://books-server-001.vercel.app/api/web/all-products/${id}`
+          `http://localhost:5001/api/web/all-products/${id}`
         );
         if (!response.ok) {
           throw new Error("Product not found");

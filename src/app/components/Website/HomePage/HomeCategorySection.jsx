@@ -17,7 +17,7 @@ const HomeCategorySection = () => {
   useEffect(() => {
     const fetchAll = async () => {
       try {
-        const res = await fetch("https://books-server-001.vercel.app/api/admin/sub-categories-with-products");
+        const res = await fetch("http://localhost:5001/api/admin/sub-categories-with-products");
         if (!res.ok) throw new Error("Failed to load data");
         const json = await res.json();
         setCategoryData(json.data || []);

@@ -90,7 +90,7 @@ const PaymentConfirmationModal = ({
 
       // Make API call to add payment
       const response = await axios.post(
-        `https://books-server-001.vercel.app/api/admin/orders/${orderId}/add-payment`,
+        `http://localhost:5001/api/admin/orders/${orderId}/add-payment`,
         paymentInfo
       );
 

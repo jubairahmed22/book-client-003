@@ -73,7 +73,7 @@ const ContactPage = () => {
     }
 
     try {
-      const res = await fetch("https://books-server-001.vercel.app/api/sent-customer-details", {
+      const res = await fetch("http://localhost:5001/api/sent-customer-details", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

@@ -21,7 +21,7 @@ const AddSubCategoryForm = ({ onClose }) => {
     const fetchCategories = async () => {
       setIsFetchingCategories(true);
       try {
-        const response = await axios.get("https://books-server-001.vercel.app/api/admin/category");
+        const response = await axios.get("http://localhost:5001/api/admin/category");
         setCategories(response.data.products);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -61,7 +61,7 @@ const AddSubCategoryForm = ({ onClose }) => {
 
     try {
       const response = await axios.post(
-        "https://books-server-001.vercel.app/api/admin/upload/sub-category",
+        "http://localhost:5001/api/admin/upload/sub-category",
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

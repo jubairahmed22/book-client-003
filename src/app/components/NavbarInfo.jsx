@@ -21,9 +21,9 @@ const NavbarInfo = () => {
   const { data: session, status } = useSession();
   const { cartCount } = useCart();
 
-  if (status === "loading") {
-    return <div className="bg-white p-4">Loading...</div>;
-  }
+  // if (status === "loading") {
+  //   return <div className="bg-white p-4">Loading...</div>;
+  // }
 
   return (
     <div>

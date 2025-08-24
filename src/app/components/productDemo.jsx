@@ -140,7 +140,7 @@ const productDemo = ({ onClose }) => {
 
     try {
       const response = await axios.post(
-        "https://books-server-001.vercel.app/upload-products",
+        "http://localhost:5001/upload-products",
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

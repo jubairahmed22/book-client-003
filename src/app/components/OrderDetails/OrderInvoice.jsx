@@ -14,7 +14,7 @@ const OrderInvoice = ({ cartItems, formData, paymentData }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://books-server-001.vercel.app/api/get-configuration"
+          "http://localhost:5001/api/get-configuration"
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -209,7 +209,7 @@ const OrderInvoice = ({ cartItems, formData, paymentData }) => {
 
     try {
       const response = await fetch(
-        "https://books-server-001.vercel.app/api/sent-order-details",
+        "http://localhost:5001/api/sent-order-details",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

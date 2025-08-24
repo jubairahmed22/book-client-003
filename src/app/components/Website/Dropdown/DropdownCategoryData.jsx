@@ -20,8 +20,8 @@ const DropdownCategoryData = ({setIsOpen}) => {
     const fetchData = async () => {
       try {
         const [subRes, childRes] = await Promise.all([
-          fetch("https://books-server-001.vercel.app/api/admin/sub-category"),
-          fetch("https://books-server-001.vercel.app/api/admin/child-category"),
+          fetch("http://localhost:5001/api/admin/sub-category-navbar"),
+          fetch("http://localhost:5001/api/admin/child-category-navbar"),
         ]);
 
         const subData = await subRes.json();
@@ -94,13 +94,13 @@ const DropdownCategoryData = ({setIsOpen}) => {
     setIsOpen(false)
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500"></div>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="flex justify-center items-center h-64">
+  //       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500"></div>
+  //     </div>
+  //   );
+  // }
 
   if (error) {
     return (

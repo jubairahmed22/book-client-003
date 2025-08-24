@@ -25,7 +25,7 @@ const AddChildCategoryForm = ({ onClose }) => {
       setIsFetchingCategories(true);
       try {
         const response = await axios.get(
-          "https://books-server-001.vercel.app/api/admin/category"
+          "http://localhost:5001/api/admin/category"
         );
         setCategories(response.data.products);
       } catch (error) {
@@ -47,7 +47,7 @@ const AddChildCategoryForm = ({ onClose }) => {
       setIsFetchingSubCategories(true);
       try {
         const response = await axios.get(
-          `https://books-server-001.vercel.app/api/admin/sub-category`
+          `http://localhost:5001/api/admin/sub-category`
         );
         // Filter sub-categories based on selected category
         const filteredSubCategories = response.data.products.filter(
@@ -100,7 +100,7 @@ const AddChildCategoryForm = ({ onClose }) => {
 
     try {
       const response = await axios.post(
-        "https://books-server-001.vercel.app/api/admin/upload/child-category",
+        "http://localhost:5001/api/admin/upload/child-category",
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

@@ -44,7 +44,7 @@ const BannerThreeAllDataAdmin = () => {
         if (showWebParam) params.set("showWebFilter", showWebParam);
 
         const response = await axios.get(
-          `https://books-server-001.vercel.app/api/admin/bannerThree?${params.toString()}`
+          `http://localhost:5001/api/admin/bannerThree?${params.toString()}`
         );
         setCategories(response.data.products);
         setTotalPages(response.data.totalPages);
@@ -115,7 +115,7 @@ const BannerThreeAllDataAdmin = () => {
 
     try {
       const response = await axios.delete(
-        `https://books-server-001.vercel.app/api/admin/delete/bannerThree/${id}`
+        `http://localhost:5001/api/admin/delete/bannerThree/${id}`
       );
 
       if (response.data.success) {

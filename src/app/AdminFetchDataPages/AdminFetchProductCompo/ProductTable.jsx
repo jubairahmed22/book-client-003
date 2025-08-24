@@ -117,7 +117,7 @@ const ProductTable = ({ products, onDelete, currentPage, totalPages }) => {
 
     try {
       const response = await fetch(
-        "https://books-server-001.vercel.app/api/admin/add-popular-books",
+        "http://localhost:5001/api/admin/add-popular-books",
         {
           method: "POST",
           headers: {
@@ -147,7 +147,7 @@ const ProductTable = ({ products, onDelete, currentPage, totalPages }) => {
 
     try {
       const response = await fetch(
-        "https://books-server-001.vercel.app/api/admin/remove-popular-books",
+        "http://localhost:5001/api/admin/remove-popular-books",
         {
           method: "POST",
           headers: {
@@ -177,7 +177,7 @@ const ProductTable = ({ products, onDelete, currentPage, totalPages }) => {
 
     try {
       const response = await fetch(
-        "https://books-server-001.vercel.app/api/admin/add-dailyDeals",
+        "http://localhost:5001/api/admin/add-dailyDeals",
         {
           method: "POST",
           headers: {
@@ -207,7 +207,7 @@ const ProductTable = ({ products, onDelete, currentPage, totalPages }) => {
 
     try {
       const response = await fetch(
-        "https://books-server-001.vercel.app/api/admin/remove-dailyDeals",
+        "http://localhost:5001/api/admin/remove-dailyDeals",
         {
           method: "POST",
           headers: {
@@ -237,7 +237,7 @@ const ProductTable = ({ products, onDelete, currentPage, totalPages }) => {
 
     try {
       const response = await fetch(
-        "https://books-server-001.vercel.app/api/admin/add-trendingNow",
+        "http://localhost:5001/api/admin/add-trendingNow",
         {
           method: "POST",
           headers: {
@@ -267,7 +267,7 @@ const ProductTable = ({ products, onDelete, currentPage, totalPages }) => {
 
     try {
       const response = await fetch(
-        "https://books-server-001.vercel.app/api/admin/remove-trending",
+        "http://localhost:5001/api/admin/remove-trending",
         {
           method: "POST",
           headers: {
@@ -297,7 +297,7 @@ const ProductTable = ({ products, onDelete, currentPage, totalPages }) => {
 
     try {
       const response = await fetch(
-        "https://books-server-001.vercel.app/api/admin/new-released",
+        "http://localhost:5001/api/admin/new-released",
         {
           method: "POST",
           headers: {
@@ -327,7 +327,7 @@ const ProductTable = ({ products, onDelete, currentPage, totalPages }) => {
 
     try {
       const response = await fetch(
-        "https://books-server-001.vercel.app/api/admin/remove/new-released",
+        "http://localhost:5001/api/admin/remove/new-released",
         {
           method: "POST",
           headers: {
@@ -373,7 +373,7 @@ const ProductTable = ({ products, onDelete, currentPage, totalPages }) => {
 
     try {
       const response = await fetch(
-        "https://books-server-001.vercel.app/api/admin/add-status-discount",
+        "http://localhost:5001/api/admin/add-status-discount",
         {
           method: "POST",
           headers: {
@@ -408,7 +408,7 @@ const ProductTable = ({ products, onDelete, currentPage, totalPages }) => {
 
     try {
       const response = await fetch(
-        "https://books-server-001.vercel.app/api/admin/remove-discount",
+        "http://localhost:5001/api/admin/remove-discount",
         {
           method: "POST",
           headers: {

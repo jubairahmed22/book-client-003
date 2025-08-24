@@ -120,7 +120,7 @@ const InputFilter = () => {
       try {
         if (searchMode === "english") {
           const englishRes = await fetch(
-            `https://books-server-001.vercel.app/api/admin/all-products?` +
+            `http://localhost:5001/api/admin/all-products?` +
               new URLSearchParams({
                 title: searchTerm,
                 searchMode: "flexible",
@@ -143,7 +143,7 @@ const InputFilter = () => {
 
         if (searchMode === "bangla" && banglaSearchTerm) {
           const banglaRes = await fetch(
-            `https://books-server-001.vercel.app/api/admin/all-products?` +
+            `http://localhost:5001/api/admin/all-products?` +
               new URLSearchParams({
                 title: banglaSearchTerm,
                 searchMode: "flexible",

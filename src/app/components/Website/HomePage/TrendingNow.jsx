@@ -18,7 +18,7 @@ const TrendingNow = () => {
     const fetchTrendingBooks = async () => {
       try {
         setLoading(true);
-        const response = await fetch('https://books-server-001.vercel.app/api/web/trending-now');
+        const response = await fetch('http://localhost:5001/api/web/trending-now');
         if (!response.ok) {
           throw new Error('Failed to fetch trending books');
         }
