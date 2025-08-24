@@ -44,7 +44,7 @@ const AuthorAllDataAdmin = () => {
         if (showWebParam) params.set("showWebFilter", showWebParam);
 
         const response = await axios.get(
-          `http://localhost:5001/api/admin/all-tag?${params.toString()}`
+          `https://books-server-001.vercel.app/api/admin/all-tag?${params.toString()}`
         );
         setCategories(response.data.products);
         setTotalPages(response.data.totalPages);
@@ -115,7 +115,7 @@ const AuthorAllDataAdmin = () => {
 
     try {
       const response = await axios.delete(
-        `http://localhost:5001/api/admin/delete/tag/${id}`
+        `https://books-server-001.vercel.app/api/admin/delete/tag/${id}`
       );
 
       if (response.data.success) {

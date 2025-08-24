@@ -21,7 +21,7 @@ const useCon = () => {
   useEffect(() => {
     const fetchConfiguration = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/api/get-configuration');
+        const response = await axios.get('https://books-server-001.vercel.app/api/get-configuration');
         const data = response.data;
         setConfig({
           termsAndConditions: data.termsAndConditions,

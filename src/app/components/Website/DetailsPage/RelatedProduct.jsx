@@ -18,7 +18,7 @@ const RelatedProduct = ({ product, handleChildCategoryClick }) => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `http://localhost:5001/api/web/all-child-category-product/${dataId}`,
+          `https://books-server-001.vercel.app/api/web/all-child-category-product/${dataId}`,
           {
             params: {
               page: currentPage,

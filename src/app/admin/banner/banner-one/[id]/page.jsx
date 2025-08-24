@@ -38,7 +38,7 @@ const EditBannerOnePage = () => {
       try {
         setIsLoading(true);
         const response = await axios.get(
-          `http://localhost:5001/api/admin/bannerOne/${categoryId}`
+          `https://books-server-001.vercel.app/api/admin/bannerOne/${categoryId}`
         );
         const category = response.data;
         setFormData({
@@ -140,7 +140,7 @@ const EditBannerOnePage = () => {
       }
 
       const response = await axios.put(
-        `http://localhost:5001/api/admin/update/bannerOne/${categoryId}`,
+        `https://books-server-001.vercel.app/api/admin/update/bannerOne/${categoryId}`,
         formDataToSend,
         {
           headers: {

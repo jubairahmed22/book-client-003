@@ -19,7 +19,7 @@ const NonFictionData = () => {
       try {
         setChildCategoriesLoading(true);
         const response = await fetch(
-          "http://localhost:5001/api/admin/child-category"
+          "https://books-server-001.vercel.app/api/admin/child-category"
         );
         if (!response.ok) throw new Error("Network response was not ok");
         const data = await response.json();
@@ -40,7 +40,7 @@ const NonFictionData = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        let url = `http://localhost:5001/api/admin/non-fiction?page=${currentPage}`;
+        let url = `https://books-server-001.vercel.app/api/admin/non-fiction?page=${currentPage}`;
         if (selectedChildCategory) url += `&childCategory=${selectedChildCategory}`;
 
         const response = await fetch(url);

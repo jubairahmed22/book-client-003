@@ -24,7 +24,7 @@ const AuthorsPage = () => {
   const fetchAuthors = async (page = 1, search = "") => {
     try {
       setLoading(true);
-      const url = new URL("http://localhost:5001/api/web/main-all-author");
+      const url = new URL("https://books-server-001.vercel.app/api/web/main-all-author");
       url.searchParams.append("page", page);
       if (search) {
         url.searchParams.append("title", search);

@@ -13,7 +13,7 @@ const Categories = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:5001/api/admin/sub-category");
+        const res = await fetch("https://books-server-001.vercel.app/api/admin/sub-category");
         const data = await res.json();
         
         const filteredSubCategories = (data.products || []).filter(

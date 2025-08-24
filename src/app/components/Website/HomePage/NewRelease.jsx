@@ -18,7 +18,7 @@ const NewRelease = () => {
     const fetchNewReleases = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:5001/api/web/new-released');
+        const response = await fetch('https://books-server-001.vercel.app/api/web/new-released');
         if (!response.ok) {
           throw new Error('Failed to fetch new releases');
         }

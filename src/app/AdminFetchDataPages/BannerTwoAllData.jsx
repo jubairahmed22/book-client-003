@@ -44,7 +44,7 @@ const BannerAllDataTwoAdmin = () => {
         if (showWebParam) params.set("showWebFilter", showWebParam);
 
         const response = await axios.get(
-          `http://localhost:5001/api/admin/bannerTwo?${params.toString()}`
+          `https://books-server-001.vercel.app/api/admin/bannerTwo?${params.toString()}`
         );
         setCategories(response.data.products);
         setTotalPages(response.data.totalPages);
@@ -115,7 +115,7 @@ const BannerAllDataTwoAdmin = () => {
 
     try {
       const response = await axios.delete(
-        `http://localhost:5001/api/admin/delete/bannerTwo/${id}`
+        `https://books-server-001.vercel.app/api/admin/delete/bannerTwo/${id}`
       );
 
       if (response.data.success) {

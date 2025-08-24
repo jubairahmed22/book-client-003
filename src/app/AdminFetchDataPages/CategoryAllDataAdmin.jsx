@@ -44,7 +44,7 @@ const CategoryAllDataAdmin = () => {
         if (showWebParam) params.set("showWebFilter", showWebParam);
 
         const response = await axios.get(
-          `http://localhost:5001/api/admin/category?${params.toString()}`
+          `https://books-server-001.vercel.app/api/admin/category?${params.toString()}`
         );
         setCategories(response.data.products);
         setTotalPages(response.data.totalPages);
@@ -115,7 +115,7 @@ const CategoryAllDataAdmin = () => {
 
     try {
       const response = await axios.delete(
-        `http://localhost:5001/api/admin/category/${id}`
+        `https://books-server-001.vercel.app/api/admin/category/${id}`
       );
 
       if (response.data.success) {

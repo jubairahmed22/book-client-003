@@ -13,7 +13,7 @@ const HomeSlider = () => {
   useEffect(() => {
     const fetchSlides = async () => {
       try {
-        const response = await fetch('http://localhost:5001/api/admin/bannerOne');
+        const response = await fetch('https://books-server-001.vercel.app/api/admin/bannerOne');
         if (!response.ok) {
           throw new Error('Failed to fetch slides');
         }

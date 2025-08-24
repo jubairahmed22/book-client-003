@@ -119,7 +119,7 @@ const Page = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5001/pay-sslcommerz",
+        "https://books-server-001.vercel.app/pay-sslcommerz",
         {
           total,
           customerTotal: total,
@@ -157,7 +157,7 @@ const Page = () => {
 
   //     try {
   //       const response = await fetch(
-  //         "http://localhost:5001/api/sent-cart-details",
+  //         "https://books-server-001.vercel.app/api/sent-cart-details",
   //         {
   //           method: "POST",
   //           headers: { "Content-Type": "application/json" },
@@ -217,7 +217,7 @@ const Page = () => {
     try {
       // First make the cash on delivery order request
       const orderResponse = await axios.post(
-        "http://localhost:5001/pay-cashondelivery",
+        "https://books-server-001.vercel.app/pay-cashondelivery",
         {
           total,
           customerTotal: total,
@@ -236,7 +236,7 @@ const Page = () => {
         // Then send the email confirmation
         try {
           const emailResponse = await fetch(
-            "http://localhost:5001/api/sent-cart-details",
+            "https://books-server-001.vercel.app/api/sent-cart-details",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },

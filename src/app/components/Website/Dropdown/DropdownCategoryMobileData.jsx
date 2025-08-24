@@ -22,10 +22,10 @@ const DropdownCategoryMobileData = ({ setIsOpen }) => {
     const fetchData = async () => {
       try {
         const [subRes, childRes, writersRes, publishersRes] = await Promise.all([
-          fetch("http://localhost:5001/api/admin/sub-category"),
-          fetch("http://localhost:5001/api/admin/child-category"),
-          fetch("http://localhost:5001/api/web/all-author"),
-          fetch("http://localhost:5001/api/web/all-publisher")
+          fetch("https://books-server-001.vercel.app/api/admin/sub-category"),
+          fetch("https://books-server-001.vercel.app/api/admin/child-category"),
+          fetch("https://books-server-001.vercel.app/api/web/all-author"),
+          fetch("https://books-server-001.vercel.app/api/web/all-publisher")
         ]);
 
         const subData = await subRes.json();

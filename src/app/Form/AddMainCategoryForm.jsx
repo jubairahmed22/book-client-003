@@ -32,7 +32,7 @@ const AddMainCategoryForm = ({ onClose }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5001/api/admin/upload/main-category",
+        "https://books-server-001.vercel.app/api/admin/upload/main-category",
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

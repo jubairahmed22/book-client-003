@@ -25,7 +25,7 @@ const ConfigurationPage = () => {
     const fetchConfig = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5001/api/get-configuration"
+          "https://books-server-001.vercel.app/api/get-configuration"
         );
         if (!response.ok) throw new Error("Failed to fetch configuration");
 
@@ -68,7 +68,7 @@ const ConfigurationPage = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5001/api/add-configure/appConfig",
+        "https://books-server-001.vercel.app/api/add-configure/appConfig",
         {
           method: "PUT",
           headers: {

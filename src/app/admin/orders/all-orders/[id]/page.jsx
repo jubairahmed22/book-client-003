@@ -62,7 +62,7 @@ const EditOrders = () => {
     try {
       if (orderId) {
         const orderResponse = await axios.get(
-          `http://localhost:5001/api/admin/all-order/${orderId}`
+          `https://books-server-001.vercel.app/api/admin/all-order/${orderId}`
         );
         const order = orderResponse.data;
 
@@ -132,7 +132,7 @@ const EditOrders = () => {
     try {
       // Make API call to update the cart item
       const response = await fetch(
-        `http://localhost:5001/api/admin/update-cart-orders/${orderId}/items/${currentCartItem.productId}`,
+        `https://books-server-001.vercel.app/api/admin/update-cart-orders/${orderId}/items/${currentCartItem.productId}`,
         {
           method: "PUT",
           headers: {
@@ -198,7 +198,7 @@ const EditOrders = () => {
 
       // Make API call to add the product
       const response = await axios.post(
-        `http://localhost:5001/api/admin/orders/${orderId}/add-product`,
+        `https://books-server-001.vercel.app/api/admin/orders/${orderId}/add-product`,
         productData
       );
 
@@ -239,7 +239,7 @@ const EditOrders = () => {
       console.log("Payload to be submitted:", payload);
 
       const response = await axios.put(
-        `http://localhost:5001/api/admin/update/all-orders/${orderId}`,
+        `https://books-server-001.vercel.app/api/admin/update/all-orders/${orderId}`,
         payload,
         { headers: { "Content-Type": "application/json" } }
       );
@@ -300,7 +300,7 @@ const EditOrders = () => {
 
         // Call the new delete API endpoint
         await axios.delete(
-          `http://localhost:5001/api/admin/orders/${orderId}/items/${
+          `https://books-server-001.vercel.app/api/admin/orders/${orderId}/items/${
             itemToRemove.productId || itemToRemove._id
           }`
         );

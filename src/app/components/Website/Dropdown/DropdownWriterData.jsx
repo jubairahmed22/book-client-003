@@ -14,7 +14,7 @@ const DropdownWriterData = ({ setIsOpen }) => {
     const fetchPopularBooks = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5001/api/web/all-author"
+          "https://books-server-001.vercel.app/api/web/all-author"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch popular books");
